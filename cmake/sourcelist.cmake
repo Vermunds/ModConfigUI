@@ -1,0 +1,16 @@
+set(SOURCES
+	include/PCH.h
+	include/ModConfigUI/Binding.h
+	include/ModConfigUI/Localization.h
+	include/ModConfigUI/ModConfigUI.h
+	include/ModConfigUI/Renderer.h
+	src/ModConfigUI/Binding.cpp
+	src/ModConfigUI/Capture.cpp
+	src/ModConfigUI/FUCKBackend.cpp
+	src/ModConfigUI/Internal.h
+	src/ModConfigUI/Localization.cpp
+	src/ModConfigUI/ModConfigUI.cpp
+	src/ModConfigUI/ModInfoPage.cpp
+	src/ModConfigUI/Renderer.cpp
+	src/ModConfigUI/SKSEMenuFrameworkBackend.cpp
+)
