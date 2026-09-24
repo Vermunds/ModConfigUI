@@ -63,19 +63,19 @@ namespace ModConfigUI
 	{
 		if (installed)
 		{
-			SKSE::log::warn("ModConfigUI::Install called more than once, ignoring.");
+			logger::warn("ModConfigUI::Install called more than once, ignoring.");
 			return;
 		}
 
 		if (!a_modInfo.pluginName || !a_modInfo.displayName)
 		{
-			SKSE::log::error("ModConfigUI::Install requires at least a plugin name and a display name.");
+			logger::error("ModConfigUI::Install requires at least a plugin name and a display name.");
 			return;
 		}
 
 		if (a_pages.size() > MAX_PAGES)
 		{
-			SKSE::log::error("ModConfigUI::Install was given {} pages, only the first {} are registered.", a_pages.size(), MAX_PAGES);
+			logger::error("ModConfigUI::Install was given {} pages, only the first {} are registered.", a_pages.size(), MAX_PAGES);
 			a_pages = a_pages.first(MAX_PAGES);
 		}
 

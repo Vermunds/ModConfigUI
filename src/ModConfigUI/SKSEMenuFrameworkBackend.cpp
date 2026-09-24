@@ -97,7 +97,7 @@ namespace
 
 		if (!icon.texture)
 		{
-			SKSE::log::info("No key image at {}, its code will be drawn instead.", path);
+			logger::info("No key image at {}, its code will be drawn instead.", path);
 		}
 
 		return icons.emplace(a_iconName, icon).first->second;
@@ -561,7 +561,7 @@ namespace
 			REL::Relocation<std::uintptr_t> target{ REL::ID{ 68617 }, 0x7B };
 
 			// Its own, so a mod using this library doesn't have to budget for it in the shared trampoline.
-			static SKSE::Trampoline trampoline{ "ModConfigUI" };
+			static REL::Trampoline trampoline{ "ModConfigUI" };
 			trampoline.create(14);
 			m_original = trampoline.write_call<5>(target.address(), &Thunk);
 		}
@@ -594,7 +594,7 @@ namespace ModConfigUI::Internal
 	{
 		if (!SKSEMenuFramework::IsInstalled())
 		{
-			SKSE::log::info("SKSE Menu Framework not found, skipping menu registration.");
+			logger::info("SKSE Menu Framework not found, skipping menu registration.");
 			return;
 		}
 
@@ -608,6 +608,6 @@ namespace ModConfigUI::Internal
 			SKSEMenuFramework::AddSectionItem(GetPageName(i), PAGE_CALLBACKS[i]);
 		}
 
-		SKSE::log::info("Registered menu with SKSE Menu Framework.");
+		logger::info("Registered menu with SKSE Menu Framework.");
 	}
 }

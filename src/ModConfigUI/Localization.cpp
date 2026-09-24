@@ -59,7 +59,7 @@ namespace
 
 		if (size < 2)
 		{
-			SKSE::log::error("Translation file '{}' is too small to hold a byte order mark.", a_path.string());
+			logger::error("Translation file '{}' is too small to hold a byte order mark.", a_path.string());
 			return false;
 		}
 
@@ -71,7 +71,7 @@ namespace
 
 		if (static_cast<std::uint8_t>(buffer[0]) != 0xFF || static_cast<std::uint8_t>(buffer[1]) != 0xFE)
 		{
-			SKSE::log::error("Translation file '{}' must be encoded in UTF-16 LE (UCS-2 LE).", a_path.string());
+			logger::error("Translation file '{}' must be encoded in UTF-16 LE (UCS-2 LE).", a_path.string());
 			return false;
 		}
 
@@ -82,14 +82,12 @@ namespace
 			return true;
 		}
 
-		std::optional<std::string> utf8 = SKSE::stl::utf16_to_utf8(wide);
-		if (!utf8.has_value())
+		if (!REX::UTF16_TO_UTF8(wide, a_contents))
 		{
-			SKSE::log::error("Failed to convert translation file '{}' to UTF-8.", a_path.string());
+			logger::error("Failed to convert translation file '{}' to UTF-8.", a_path.string());
 			return false;
 		}
 
-		a_contents = std::move(utf8.value());
 		return true;
 	}
 
@@ -101,7 +99,7 @@ namespace
 			return false;
 		}
 
-		SKSE::log::info("Reading translations from '{}'...", a_path.string());
+		logger::info("Reading translations from '{}'...", a_path.string());
 
 		std::istringstream stream(contents);
 		std::string line;
@@ -135,7 +133,7 @@ namespace
 			++count;
 		}
 
-		SKSE::log::info("\tLoaded {} translation entries.", count);
+		logger::info("\tLoaded {} translation entries.", count);
 		return true;
 	}
 }
@@ -159,14 +157,14 @@ namespace ModConfigUI::Localization
 
 		if (language != "ENGLISH")
 		{
-			SKSE::log::info("No {} translation file found for {}, falling back to english...", language, a_pluginName);
+			logger::info("No {} translation file found for {}, falling back to english...", language, a_pluginName);
 			if (ParseFile(GetTranslationPath(a_pluginName, "ENGLISH"s)))
 			{
 				return;
 			}
 		}
 
-		SKSE::log::warn("No translation file found for {}.", a_pluginName);
+		logger::warn("No translation file found for {}.", a_pluginName);
 	}
 
 	const char* Get(const char* a_key)

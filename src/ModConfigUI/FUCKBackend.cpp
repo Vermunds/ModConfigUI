@@ -4,6 +4,13 @@
 #define NOMINMAX
 #include <Windows.h>
 
+// FUCK_API.h still logs through SKSE::log, which CommonLib no longer provides
+namespace SKSE::log
+{
+	using spdlog::error;
+	using spdlog::info;
+}
+
 #include <FUCK/src/FUCK_API.h>
 
 namespace
@@ -384,7 +391,7 @@ namespace ModConfigUI::Internal
 	{
 		if (!FUCK::Connect(GetModInfo().pluginName))
 		{
-			SKSE::log::info("F.U.C.K not found, skipping menu registration.");
+			logger::info("F.U.C.K not found, skipping menu registration.");
 			return;
 		}
 
@@ -394,6 +401,6 @@ namespace ModConfigUI::Internal
 			FUCK::RegisterTool(tools.back().get());
 		}
 
-		SKSE::log::info("Registered menu with F.U.C.K.");
+		logger::info("Registered menu with F.U.C.K.");
 	}
 }

@@ -14,7 +14,7 @@ namespace
 		HINSTANCE result = ShellExecuteA(nullptr, "open", a_target, nullptr, nullptr, SW_SHOWNORMAL);
 		if (reinterpret_cast<std::intptr_t>(result) <= 32)
 		{
-			SKSE::log::warn("Failed to open '{}' (error {}).", a_target, reinterpret_cast<std::intptr_t>(result));
+			logger::warn("Failed to open '{}' (error {}).", a_target, reinterpret_cast<std::intptr_t>(result));
 		}
 	}
 
