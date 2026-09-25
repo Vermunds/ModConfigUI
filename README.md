@@ -19,3 +19,7 @@ A built-in "Mod Info" page is added in front of your settings pages.
 ## Translations
 
 Strings are loaded from `Interface/Translations/<PluginName>_<LANGUAGE>.txt` (UTF-16 LE). Every mod's file must contain all `$ModConfigUI_*` keys. A missing key shows up raw in the menu.
+
+## License
+
+This software is available under the GNU General Public License v3.0 or later, with a modding exception. See [LICENSE](./LICENSE) and [EXCEPTIONS.md](./EXCEPTIONS.md) for details.
