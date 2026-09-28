@@ -11,7 +11,7 @@ namespace SKSE::log
 	using spdlog::info;
 }
 
-#include <FUCK/src/FUCK_API.h>
+#include <FUCK_API.h>
 
 namespace
 {
