@@ -4,7 +4,7 @@
 #define NOMINMAX
 #include <Windows.h>
 
-#include <FUCK/src/FUCK_API.h>
+#include <FUCK_API.h>
 
 namespace
 {

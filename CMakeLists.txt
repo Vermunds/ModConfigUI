@@ -20,7 +20,7 @@ target_include_directories(
 		"${CMAKE_CURRENT_SOURCE_DIR}/include"
 	PRIVATE
 		"${CMAKE_SOURCE_DIR}/lib/SKSE-Menu-Framework-3-API"
-		"${CMAKE_SOURCE_DIR}/lib"	# For "FUCK/src/FUCK_API.h" - the folder itself can't be added, its PCH.h would shadow ours
+		"${CMAKE_SOURCE_DIR}/lib/FUCK_API"
 )
 
 target_link_libraries(
